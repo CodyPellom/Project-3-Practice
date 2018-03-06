@@ -23,9 +23,11 @@ app.use(bodyParser.json())
 app.use(express.static(`${__dirname}/client/build`))
 //set up our routes
 
-app.get('/', (req, res) => {
-    res.send('Hello, world')
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
 })
+
+const PORT = process.env.PORT || 3001
 
 app.listen(3001, () => {
     console.log('app is listening on port 3001')
